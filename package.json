@@ -1,7 +1,7 @@
 {
   "name": "backendupb",
   "version": "1.0.0",
-  "description": "",
+  "description": "API REST de productos (Express + PostgreSQL)",
   "main": "src/app.js",
   "scripts": {
     "start": "node src/app.js",
@@ -20,5 +20,8 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
+  },
+  "engines": {
+    "node": ">=18"
   }
 }

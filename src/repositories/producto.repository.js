@@ -1,7 +1,18 @@
 const pool = require('../config/db');
 const Producto = require('../entities/producto.entity');
 
-const findAll = async () => {
+// Escapa los comodines de LIKE para que "%" y "_" se busquen como texto literal
+// (en PostgreSQL la barra invertida es el carácter de escape por defecto de LIKE/ILIKE)
+const escaparLike = (texto) => texto.replace(/[\\%_]/g, '\\$&');
+
+const findAll = async ({ nombre } = {}) => {
+    if (nombre) {
+        const { rows } = await pool.query(
+            'SELECT * FROM productos WHERE nombre ILIKE $1 ORDER BY id',
+            [`%${escaparLike(nombre)}%`]
+        );
+        return rows.map(Producto.fromRow);
+    }
     const { rows } = await pool.query('SELECT * FROM productos ORDER BY id');
     return rows.map(Producto.fromRow);
 };

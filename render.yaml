@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: backendupbtest
+    runtime: node
+    repo: https://github.com/valelop2606/backendUpbtest.git
+    branch: main
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 22.22.0
+      - key: PORT
+        value: 10000
+      - key: DB_SSL
+        value: true
+      - key: DATABASE_URL
+        sync: false # <-- se llena en el dashboard de Render con la Internal Database URL
