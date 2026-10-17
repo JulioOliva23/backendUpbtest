@@ -1,8 +1,8 @@
 services:
   - type: web
-    name: backendupbtest
+    name: backendupbtest-julio
     runtime: node
-    repo: https://github.com/valelop2606/backendUpbtest.git
+    repo: https://github.com/JulioOliva23/backendUpbtest.git
     branch: main
     buildCommand: npm ci
     startCommand: npm start
